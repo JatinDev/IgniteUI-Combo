@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page1.component.css']
 })
 export class Page1Component implements OnInit {
-
+  CountryObj: any;
+  StateObj: any;
   countriesStaticData = [
     { 'countryId': '1', 'countryName': 'India' },
     { 'countryId': '2', 'countryName': 'China' },
@@ -49,7 +50,7 @@ export class Page1Component implements OnInit {
   CountryComboChange(obj: any): void {
     this.filterdStates = [];
     if (obj.length == 0) {
-    this.filterdStates = this.statesStaticData;
+      this.filterdStates = this.statesStaticData;
       return;
     }
     obj.forEach(element => {
