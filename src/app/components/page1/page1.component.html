@@ -1,0 +1,63 @@
+<div class="container" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-sm-3" style="text-align: right">
+      <h5 style="line-height: 45px">Countries</h5>
+    </div>
+    <div class="col-sm-4">
+      <igx-combo class="input-container" [(ngModel)]="CountryObj" (ngModelChange)="CountryComboChange($event)" width="300px" [data]="countriesStaticData"
+        [displayKey]="'countryName'" [valueKey]="'countryId'" placeholder="Countries" [allowCustomValues]="true" [itemsMaxHeight]="250"
+        [filterable]="true" searchPlaceholder="Search...">
+      </igx-combo>
+    </div>
+    <div class="col-sm-4">
+      <span *ngFor="let o of CountryObj">
+        CountryId :
+        <b>{{o.countryId}}</b> , CountryName :
+        <b> {{o.countryName}}</b>
+        <br>
+      </span>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="text-align: right">
+      <h5  style="line-height: 45px"  > States</h5>
+    </div>
+    <div class="col-sm-4">
+      <igx-combo class="input-container" [(ngModel)]="StateObj" width="300px" [data]="filterdStates" [displayKey]="'stateName'"
+        [valueKey]="'stateId'" placeholder="States" [groupKey]="'countryName'" [allowCustomValues]="true" [itemsMaxHeight]="250"
+        [filterable]="true" searchPlaceholder="Search...">
+
+        <ng-template #itemTemplate let-display let-key="valueKey">
+          <div class="item">
+            <span>{{ display.stateName }} - </span>
+            <span> (StateId - {{ display[key] }})</span>
+          </div>
+        </ng-template>
+
+        <ng-template #headerTemplate>
+          <div class="header-class">This is Header</div>
+        </ng-template>
+
+        <ng-template #footerTemplate>
+          <div class="footer-class">This is Footer</div>
+        </ng-template>
+
+        <igx-combo>
+          <ng-template #emptyTemplate>
+            <span class="empty-class">No available states</span>
+          </ng-template>
+        </igx-combo>
+
+      </igx-combo>
+    </div>
+    <div class="col-sm-4">
+      <span *ngFor="let s of StateObj">
+        StateId :
+        <b>{{s.stateId}}</b> , StateName :
+        <b> {{s.stateName}}</b>
+        <br>
+      </span>
+    </div>
+  </div>
+</div>
